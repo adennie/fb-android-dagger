@@ -4,14 +4,10 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.fizzbuzz</groupId>
-    <artifactId>maven-parent</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
-  </parent>
+
+  <groupId>com.fizzbuzz</groupId>
   <artifactId>fb-android-dagger</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <packaging>apklib</packaging>
 
   <properties>
     <android-target-sdk>17</android-target-sdk>
@@ -19,7 +15,9 @@
     <!-- dependency versions -->
     <android.version>4.2_r1</android.version>
     <android-compat-v4.version>r10</android-compat-v4.version>
-    <guava.version>14.0.1</guava.version>
+    <dagger.version>1.0.0</dagger.version>
+    <slf4j-android.version>1.6.1-RC1</slf4j-android.version>
+    <guava.version>10.0.1</guava.version>
   </properties>
 
   <dependencies>
