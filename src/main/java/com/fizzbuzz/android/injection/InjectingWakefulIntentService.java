@@ -23,14 +23,14 @@ import java.util.List;
 
 import static com.google.common.base.Preconditions.checkState;
 
-public abstract class InjectingIntentService
+public abstract class InjectingWakefulIntentService
         extends WakefulIntentService
         implements Injector {
 
     private Context mContext;
     private ObjectGraph mObjectGraph;
 
-    public InjectingIntentService(String name) {
+    public InjectingWakefulIntentService(String name) {
         super(name);
     }
 

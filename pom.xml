@@ -13,8 +13,8 @@
     <android-target-sdk>17</android-target-sdk>
 
     <!-- dependency versions -->
-    <android.version>4.2_r1</android.version>
-    <android-compat-v4.version>r10</android-compat-v4.version>
+    <android.version>4.2.2</android.version>
+    <android-support-v4.version>r13</android-support-v4.version>
     <dagger.version>1.0.0</dagger.version>
     <slf4j-android.version>1.6.1-RC1</slf4j-android.version>
     <guava.version>10.0.1</guava.version>
@@ -24,99 +24,18 @@
 
     <!-- test scoped dependencies -->
 
-    <dependency>
-      <groupId>org.easytesting</groupId>
-      <artifactId>fest-assert-core</artifactId>
-      <version>2.0M8</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>com.squareup</groupId>
-      <artifactId>fest-android</artifactId>
-      <version>1.0.0</version>
-      <scope>test</scope>
-    </dependency>
-
-    <!-- override plexus-utils version to avoid divergence caused by roboelectric wanting to use an older version -->
-    <dependency>
-      <groupId>org.codehaus.plexus</groupId>
-      <artifactId>plexus-utils</artifactId>
-      <version>1.5.15</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.robolectric</groupId>
-      <artifactId>robolectric</artifactId>
-      <version>2.0-alpha-1</version>
-      <scope>test</scope>
-      <exclusions>
-        <!-- exclude httpclient to avoid divergence caused by roboelectric wanting to use an older version -->
-        <exclusion>
-          <groupId>org.apache.httpcomponents</groupId>
-          <artifactId>httpclient</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>commons-codec</groupId>
-          <artifactId>commons-codec</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.codehaus.plexus</groupId>
-          <artifactId>plexus-utils</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-
-    <!-- maps is used by robolectric, must be listed AFTER robolectric -->
-    <dependency>
-      <groupId>com.google.android.maps</groupId>
-      <artifactId>maps</artifactId>
-      <version>8_r2</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-
-    <!-- override hamcrest-core version to avoid divergence caused by mockito wanting to use an older version -->
-    <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-core</artifactId>
-      <version>1.3</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
-      <version>1.9.5</version>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>org.hamcrest</groupId>
-          <artifactId>hamcrest-core</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-
-
     <!-- 3rd party _packaged_ dependencies, alpha by groupId/artifactId -->
-
-    <dependency>
-      <groupId>android.support</groupId>
-      <artifactId>compatibility-v4</artifactId>
-      <version>${android-compat-v4.version}</version>
-    </dependency>
 
     <dependency>
       <groupId>com.commonsware</groupId>
       <artifactId>cwac-wakefulintentservice</artifactId>
       <version>1.0-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.android</groupId>
+      <artifactId>support-v4</artifactId>
+      <version>${android-support-v4.version}</version>
     </dependency>
 
     <dependency>
@@ -139,7 +58,7 @@
 
     <!-- 3rd party _provided_ dependencies, alpha by groupId/artifactId -->
     <dependency>
-      <groupId>android</groupId>
+      <groupId>com.google.android</groupId>
       <artifactId>android</artifactId>
       <version>${android.version}</version>
       <scope>provided</scope>
