@@ -14,7 +14,6 @@
 
 package com.fizzbuzz.android.injection;
 
-import android.app.Activity;
 import dagger.Module;
 import dagger.Provides;
 
@@ -23,19 +22,21 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Module(library=true)
 public class InjectingActivityModule {
-    private Activity mActivity;
+    private android.app.Activity mActivity;
 
-    public InjectingActivityModule(Activity activity) {
+    public InjectingActivityModule(android.app.Activity activity) {
         mActivity = activity;
     }
 
     @Provides
-    public Activity provideActivity() {
+    public android.app.Activity provideActivity() {
         return mActivity;
     }
 
@@ -43,6 +44,6 @@ public class InjectingActivityModule {
     @Target({FIELD, PARAMETER, METHOD})
     @Documented
     @Retention(RUNTIME)
-    public @interface ActivityScoped {
+    public @interface Activity {
     }
 }

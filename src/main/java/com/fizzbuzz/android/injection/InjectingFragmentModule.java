@@ -14,7 +14,6 @@
 
 package com.fizzbuzz.android.injection;
 
-import android.support.v4.app.Fragment;
 import dagger.Module;
 import dagger.Provides;
 
@@ -23,19 +22,21 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Module(library=true)
 public class InjectingFragmentModule {
-    private Fragment mFragment;
+    private android.support.v4.app.Fragment mFragment;
 
-    public InjectingFragmentModule(Fragment fragment) {
+    public InjectingFragmentModule(android.support.v4.app.Fragment fragment) {
         mFragment = fragment;
     }
 
     @Provides
-    public Fragment provideFragment() {
+    public android.support.v4.app.Fragment provideFragment() {
         return mFragment;
     }
 
@@ -43,6 +44,6 @@ public class InjectingFragmentModule {
     @Target({FIELD, PARAMETER, METHOD})
     @Documented
     @Retention(RUNTIME)
-    public @interface FragmentScoped {
+    public @interface Fragment {
     }
 }
