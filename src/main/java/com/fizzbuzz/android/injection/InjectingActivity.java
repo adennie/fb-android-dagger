@@ -42,6 +42,14 @@ public class InjectingActivity
         inject(this);
     }
 
+    @Override protected void onDestroy() {
+        // Eagerly clear the reference to the activity graph to allow it to be garbage collected as
+        // soon as possible.
+        mObjectGraph = null;
+
+        super.onDestroy();
+    }
+
     // implement Injector interface
 
     @Override

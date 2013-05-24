@@ -47,6 +47,14 @@ public class InjectingFragment
         }
     }
 
+    @Override public void onDestroy() {
+        // Eagerly clear the reference to the fragment graph to allow it to be garbage collected as
+        // soon as possible.
+        mObjectGraph = null;
+
+        super.onDestroy();
+    }
+
     // implement Injector interface
 
     @Override
