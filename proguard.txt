@@ -1,0 +1,15 @@
+# keep classes that Dagger needs to inject...
+# android component classes (other than those covered by proguard-android.txt)
+-keep class android.content.Context { *; }
+-keep class com.fizzbuzz.ottoext.MainThreadBus { *; }
+-keep class com.fizzbuzz.ottoext.GuaranteedDeliveryBus { *; }
+
+#include standard configs for libraries used in this project
+-basedirectory ../../proguard_config
+-include proguard-admob.txt
+-include proguard-android.txt
+-include proguard-dagger.txt
+-include proguard-flurry.txt
+-include proguard-guava.txt
+-include proguard-java.txt
+-include proguard-otto.txt

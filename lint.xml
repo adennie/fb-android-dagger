@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="NewApi">
+        <ignore path="src\main\java\com\fizzbuzz\android\util\StockPreferenceFragment.java" />
+    </issue>
+    <issue id="ParserError" severity="ignore" />
+</lint>
