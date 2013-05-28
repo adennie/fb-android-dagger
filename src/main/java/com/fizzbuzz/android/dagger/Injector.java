@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.fizzbuzz.android.injection;
+package com.fizzbuzz.android.dagger;
 
 import dagger.ObjectGraph;
 

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.fizzbuzz.android.injection;
+package com.fizzbuzz.android.dagger;
 
 import dagger.Module;
 import dagger.Provides;
@@ -28,22 +28,22 @@ import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Module(library=true)
-public class InjectingFragmentModule {
-    private android.support.v4.app.Fragment mFragment;
+public class InjectingActivityModule {
+    private android.app.Activity mActivity;
 
-    public InjectingFragmentModule(android.support.v4.app.Fragment fragment) {
-        mFragment = fragment;
+    public InjectingActivityModule(android.app.Activity activity) {
+        mActivity = activity;
     }
 
     @Provides
-    public android.support.v4.app.Fragment provideFragment() {
-        return mFragment;
+    public android.app.Activity provideActivity() {
+        return mActivity;
     }
 
     @Qualifier
     @Target({FIELD, PARAMETER, METHOD})
     @Documented
     @Retention(RUNTIME)
-    public @interface Fragment {
+    public @interface Activity {
     }
 }

@@ -12,10 +12,11 @@
  * limitations under the License.
  */
 
-package com.fizzbuzz.android.injection;
+package com.fizzbuzz.android.dagger;
 
-import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import dagger.Module;
 import dagger.ObjectGraph;
 import dagger.Provides;
@@ -34,24 +35,23 @@ import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-public abstract class InjectingService
-        extends Service
+public class InjectingBroadcastReceiver
+        extends BroadcastReceiver
         implements Injector {
 
     private Context mContext;
     private ObjectGraph mObjectGraph;
 
     @Override
-    public void onCreate() {
-        super.onCreate();
+    public void onReceive(Context context, Intent intent) {
+        mContext = context;
 
-        // extend the application-scope object graph with the modules for this service
-        mObjectGraph = ((Injector)getApplication()).getObjectGraph().plus(getModules().toArray());
+        // extend the application-scope object graph with the modules for this broadcast receiver
+        mObjectGraph = ((Injector)context.getApplicationContext()).getObjectGraph().plus(getModules().toArray());
 
         // then inject ourselves
         mObjectGraph.inject(this);
     }
-
 
     @Override
     public ObjectGraph getObjectGraph() {
@@ -65,28 +65,30 @@ public abstract class InjectingService
 
     protected List<Object> getModules() {
         List<Object> result = new ArrayList<Object>();
+        result.add(new InjectingBroadcastReceiverModule(mContext));
         return result;
     }
 
-
     @Module(library=true)
-    public static class InjectingServiceModule {
-        private InjectingService mService;
+    public static class InjectingBroadcastReceiverModule {
+        Context mBrContext;
 
-        public InjectingServiceModule(InjectingService service) {
-            mService = service;
+        public InjectingBroadcastReceiverModule(Context brContext) {
+            mBrContext = brContext;
         }
 
         @Provides
         @Singleton
-        public InjectingService provideInjectingService() {
-            return mService;
+        @BroadcastReceiver
+        public Context provideBroadcastReceiverContext() {
+            return mBrContext;
         }
+
         @Qualifier
         @Target({FIELD, PARAMETER, METHOD})
         @Documented
         @Retention(RUNTIME)
-        public @interface Service {
+        public @interface BroadcastReceiver {
         }
     }
 }

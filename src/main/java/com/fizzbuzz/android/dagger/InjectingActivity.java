@@ -12,11 +12,9 @@
  * limitations under the License.
  */
 
-package com.fizzbuzz.android.injection;
+package com.fizzbuzz.android.dagger;
 
 import android.app.Activity;
-import android.os.Bundle;
-import android.support.v4.app.ListFragment;
 import dagger.ObjectGraph;
 
 import java.util.ArrayList;
@@ -25,39 +23,31 @@ import java.util.List;
 import static com.google.common.base.Preconditions.checkState;
 
 /**
- * Manages an ObjectGraph on behalf of an ListFragment.  This graph is created by extending the activity-scope graph
- * with fragment-specific module(s).
+ * Manages an ObjectGraph on behalf of an Activity.  This graph is created by extending the application-scope graph with
+ * Activity-specific module(s).
  */
-public class InjectingListFragment
-        extends ListFragment
+public class InjectingActivity
+        extends Activity
         implements Injector {
     private ObjectGraph mObjectGraph;
 
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    @Override
+    protected void onCreate(android.os.Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-        // make sure it's the first time through
-        if (mObjectGraph == null) {
-            // expand the activity graph with the fragment-specific module(s)
-            ObjectGraph appGraph = ((Injector) activity).getObjectGraph();
-            List<Object> fragmentModules = getModules();
-            mObjectGraph = appGraph.plus(fragmentModules.toArray());
+        // extend the application-scope object graph with the modules for this activity
+        mObjectGraph = ((Injector)getApplication()).getObjectGraph().plus(getModules().toArray());
 
-            // now we can inject ourselves
-            inject(this);
-        }
+        // now we can inject ourselves
+        inject(this);
     }
-    @Override public void onDestroy() {
-        // Eagerly clear the reference to the fragment graph to allow it to be garbage collected as
+
+    @Override protected void onDestroy() {
+        // Eagerly clear the reference to the activity graph to allow it to be garbage collected as
         // soon as possible.
         mObjectGraph = null;
 
         super.onDestroy();
-    }
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
     }
 
     // implement Injector interface
@@ -66,7 +56,6 @@ public class InjectingListFragment
     public final ObjectGraph getObjectGraph() {
         return mObjectGraph;
     }
-
     @Override
     public void inject(Object target) {
         checkState(mObjectGraph != null, "object graph must be assigned prior to calling inject");
@@ -75,7 +64,7 @@ public class InjectingListFragment
 
     protected List<Object> getModules() {
         List<Object> result = new ArrayList<Object>();
-        result.add(new InjectingFragmentModule(this));
+        result.add(new InjectingActivityModule(this));
         return result;
     }
 }

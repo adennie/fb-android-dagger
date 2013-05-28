@@ -12,27 +12,34 @@
  * limitations under the License.
  */
 
-package com.fizzbuzz.android.injection;
+package com.fizzbuzz.android.dagger;
 
+import android.app.Service;
 import android.content.Context;
-import com.commonsware.cwac.wakeful.WakefulIntentService;
+import dagger.Module;
 import dagger.ObjectGraph;
+import dagger.Provides;
 
+import javax.inject.Qualifier;
+import javax.inject.Singleton;
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.common.base.Preconditions.checkState;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.PARAMETER;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-public abstract class InjectingWakefulIntentService
-        extends WakefulIntentService
+public abstract class InjectingService
+        extends Service
         implements Injector {
 
     private Context mContext;
     private ObjectGraph mObjectGraph;
-
-    public InjectingWakefulIntentService(String name) {
-        super(name);
-    }
 
     @Override
     public void onCreate() {
@@ -44,6 +51,7 @@ public abstract class InjectingWakefulIntentService
         // then inject ourselves
         mObjectGraph.inject(this);
     }
+
 
     @Override
     public ObjectGraph getObjectGraph() {
@@ -58,5 +66,27 @@ public abstract class InjectingWakefulIntentService
     protected List<Object> getModules() {
         List<Object> result = new ArrayList<Object>();
         return result;
+    }
+
+
+    @Module(library=true)
+    public static class InjectingServiceModule {
+        private InjectingService mService;
+
+        public InjectingServiceModule(InjectingService service) {
+            mService = service;
+        }
+
+        @Provides
+        @Singleton
+        public InjectingService provideInjectingService() {
+            return mService;
+        }
+        @Qualifier
+        @Target({FIELD, PARAMETER, METHOD})
+        @Documented
+        @Retention(RUNTIME)
+        public @interface Service {
+        }
     }
 }

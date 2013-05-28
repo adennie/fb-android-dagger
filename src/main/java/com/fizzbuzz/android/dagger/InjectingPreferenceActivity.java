@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package com.fizzbuzz.android.injection;
+package com.fizzbuzz.android.dagger;
 
-import android.app.Activity;
+import android.preference.PreferenceActivity;
 import dagger.ObjectGraph;
 
 import java.util.ArrayList;
@@ -26,8 +26,8 @@ import static com.google.common.base.Preconditions.checkState;
  * Manages an ObjectGraph on behalf of an Activity.  This graph is created by extending the application-scope graph with
  * Activity-specific module(s).
  */
-public class InjectingActivity
-        extends Activity
+public class InjectingPreferenceActivity
+        extends PreferenceActivity
         implements Injector {
     private ObjectGraph mObjectGraph;
 
@@ -35,13 +35,14 @@ public class InjectingActivity
     protected void onCreate(android.os.Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // extend the application-scope object graph with the modules for this activity
-        mObjectGraph = ((Injector)getApplication()).getObjectGraph().plus(getModules().toArray());
+        // expand the application graph with the activity-specific module(s)
+        ObjectGraph appGraph = ((Injector) getApplication()).getObjectGraph();
+        List<Object> activityModules = getModules();
+        mObjectGraph = appGraph.plus(activityModules.toArray());
 
         // now we can inject ourselves
         inject(this);
     }
-
     @Override protected void onDestroy() {
         // Eagerly clear the reference to the activity graph to allow it to be garbage collected as
         // soon as possible.
@@ -49,7 +50,6 @@ public class InjectingActivity
 
         super.onDestroy();
     }
-
     // implement Injector interface
 
     @Override
