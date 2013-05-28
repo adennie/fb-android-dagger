@@ -84,7 +84,10 @@
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <dependencies>
+          <configuration>
+            <source>1.6</source>
+            <target>1.6</target>
+          </configuration>        <dependencies>
           <dependency>
             <groupId>com.squareup.dagger</groupId>
             <artifactId>dagger-compiler</artifactId>
@@ -102,11 +105,32 @@
         <extensions>true</extensions>
 
         <configuration>
-          <androidManifestFile>${project.basedir}/AndroidManifest.xml</androidManifestFile>
           <sdk>
             <platform>${android-target-sdk}</platform>
           </sdk>
         </configuration>
+      </plugin>
+
+      <!-- always put sources into a -sources.jar file -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.1.2</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+	  
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.3.2</version>
       </plugin>
 
       <plugin>
@@ -118,6 +142,26 @@
           <!-- those 2 are important!!! -->
         </configuration>
       </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>1.1.1</version>
+        <executions>
+          <execution>
+            <id>enforce</id>
+            <configuration>
+              <rules>
+                <DependencyConvergence />
+              </rules>
+            </configuration>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+	  
     </plugins>
   </build>
 </project>
