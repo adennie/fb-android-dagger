@@ -20,6 +20,30 @@
     <guava.version>10.0.1</guava.version>
   </properties>
 
+  <scm>
+    <url>http://github.com/fizz-buzz/fb-android-dagger/</url>
+    <connection>scm:git:git://github.com/fizz-buzz/fb-android-dagger.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/fizz-buzz/fb-android-dagger.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <issueManagement>
+    <system>GitHub Issues</system>
+    <url>http://github.com/fizz-buzz/fb-android-dagger/issues</url>
+  </issueManagement>
+
+  <licenses>
+    <license>
+      <name>Apache 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
+  <organization>
+    <name>Fizz Buzz LLC</name>
+    <url>http://fizz-buzz.com</url>
+  </organization>
+  
   <dependencies>
 
     <!-- test scoped dependencies -->
