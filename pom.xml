@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.fizzbuzz</groupId>
   <artifactId>fb-android-dagger</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.0-SNAPSHOT</version>
 
   <properties>
     <android-target-sdk>17</android-target-sdk>
@@ -21,7 +24,7 @@
     <url>http://github.com/fizz-buzz/fb-android-dagger/</url>
     <connection>scm:git:git://github.com/fizz-buzz/fb-android-dagger.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/fizz-buzz/fb-android-dagger.git</developerConnection>
-    <tag>fb-android-dagger-1.0.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <issueManagement>
