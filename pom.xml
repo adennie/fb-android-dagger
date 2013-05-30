@@ -51,12 +51,6 @@
     <!-- 3rd party _packaged_ dependencies, alpha by groupId/artifactId -->
 
     <dependency>
-      <groupId>com.commonsware</groupId>
-      <artifactId>cwac-wakefulintentservice</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
-
-    <dependency>
       <groupId>com.google.android</groupId>
       <artifactId>support-v4</artifactId>
       <version>${android-support-v4.version}</version>
