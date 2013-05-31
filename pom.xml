@@ -4,7 +4,7 @@
 
   <groupId>com.fizzbuzz</groupId>
   <artifactId>fb-android-dagger</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
 
   <properties>
     <android-target-sdk>17</android-target-sdk>
@@ -21,7 +21,7 @@
     <url>http://github.com/fizz-buzz/fb-android-dagger/</url>
     <connection>scm:git:git://github.com/fizz-buzz/fb-android-dagger.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/fizz-buzz/fb-android-dagger.git</developerConnection>
-    <tag>fb-android-dagger-1.0.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <issueManagement>
