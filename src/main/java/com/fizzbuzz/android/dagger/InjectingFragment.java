@@ -24,14 +24,20 @@ import java.util.List;
 import static com.google.common.base.Preconditions.checkState;
 
 /**
- * Manages an ObjectGraph on behalf of an Fragment.  This graph is created by extending the activity-scope graph with
- * fragment-specific module(s).
+ * Manages an ObjectGraph on behalf of an ListFragment.  This graph is created by extending the hosting Activity's graph
+ * with Fragment-specific module(s).
  */
 public class InjectingFragment
         extends Fragment
         implements Injector {
     private ObjectGraph mObjectGraph;
 
+    /**
+     * Creates an object graph for this Fragment by extending the hosting Activity's object graph with the modules
+     * returned by {@link #getModules()}.
+     * <p/>
+     * Injects this Fragment using the created graph.
+     */
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
@@ -47,8 +53,9 @@ public class InjectingFragment
         }
     }
 
-    @Override public void onDestroy() {
-        // Eagerly clear the reference to the fragment graph to allow it to be garbage collected as
+    @Override
+    public void onDestroy() {
+        // Eagerly clear the reference to the object graph to allow it to be garbage collected as
         // soon as possible.
         mObjectGraph = null;
 
@@ -57,20 +64,34 @@ public class InjectingFragment
 
     // implement Injector interface
 
+    /**
+     * Gets this Fragment's object graph.
+     *
+     * @return
+     */
     @Override
     public final ObjectGraph getObjectGraph() {
         return mObjectGraph;
     }
 
+    /**
+     * Injects a target object using this Fragment's object graph.
+     * @param target the target object
+     */
     @Override
     public void inject(Object target) {
         checkState(mObjectGraph != null, "object graph must be assigned prior to calling inject");
         mObjectGraph.inject(target);
     }
-
+    /**
+     * Returns the list of dagger modules to be included in this Fragment's object graph.  Subclasses that override
+     * this method should add to the list returned by super.getModules().
+     *
+     * @return the list of modules
+     */
     protected List<Object> getModules() {
         List<Object> result = new ArrayList<Object>();
-        result.add(new InjectingFragmentModule(this));
+        result.add(new InjectingFragmentModule(this, this));
         return result;
     }
 }

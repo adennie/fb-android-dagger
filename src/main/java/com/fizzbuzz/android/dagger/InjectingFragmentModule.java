@@ -26,20 +26,49 @@ import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
+/**
+ * The dagger module associated with {@link InjectingFragment} and {@link InjectingListFragment}.
+ */
 @Module(library=true)
 public class InjectingFragmentModule {
     private android.support.v4.app.Fragment mFragment;
+    private Injector mInjector;
 
-    public InjectingFragmentModule(android.support.v4.app.Fragment fragment) {
+    /**
+     * Class constructor.
+     *
+     * @param fragment the Fragment with which this module is associated.
+     */    public InjectingFragmentModule(android.support.v4.app.Fragment fragment, Injector injector) {
         mFragment = fragment;
+        mInjector = injector;
     }
 
+    /**
+     * Provides the Fragment
+     *
+     * @return the Fragment
+     */
     @Provides
     public android.support.v4.app.Fragment provideFragment() {
         return mFragment;
     }
 
+    /**
+     * Provides the Injector for the Fragment-scope graph
+     *
+     * @return the Injector
+     */
+    @Provides
+    @Fragment
+    public Injector provideActivityInjector() {
+        return mInjector;
+    }
+
+    /**
+     * Defines an qualifier annotation which can be used in conjunction with a type to identify dependencies within
+     * the object graph.
+     * @see <a href="http://square.github.io/dagger/">the dagger documentation</a>
+     */
     @Qualifier
     @Target({FIELD, PARAMETER, METHOD})
     @Documented

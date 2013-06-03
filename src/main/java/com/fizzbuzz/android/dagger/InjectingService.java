@@ -34,6 +34,10 @@ import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+/**
+ * Manages an ObjectGraph on behalf of an Service.  This graph is created by extending the application-scope graph with
+ * Service-specific module(s).
+ */
 public abstract class InjectingService
         extends Service
         implements Injector {
@@ -41,47 +45,97 @@ public abstract class InjectingService
     private Context mContext;
     private ObjectGraph mObjectGraph;
 
+    /**
+     * Creates an object graph for this Service by extending the application-scope object graph with the modules
+     * returned by {@link #getModules()}.
+     * <p/>
+     * Injects this Service using the created graph.
+     */
     @Override
     public void onCreate() {
         super.onCreate();
 
         // extend the application-scope object graph with the modules for this service
-        mObjectGraph = ((Injector)getApplication()).getObjectGraph().plus(getModules().toArray());
+        mObjectGraph = ((Injector) getApplication()).getObjectGraph().plus(getModules().toArray());
 
         // then inject ourselves
         mObjectGraph.inject(this);
     }
 
-
+    /**
+     * Gets this Service's object graph.
+     *
+     * @return
+     */
     @Override
     public ObjectGraph getObjectGraph() {
         return mObjectGraph;
     }
 
+    /**
+     * Injects a target object using this Service's object graph.
+     *
+     * @param target the target object
+     */
     public void inject(Object target) {
         checkState(mObjectGraph != null, "object graph must be initialized prior to calling inject");
         mObjectGraph.inject(target);
     }
 
+    /**
+     * Returns the list of dagger modules to be included in this Service's object graph.  Subclasses that override
+     * this method should add to the list returned by super.getModules().
+     *
+     * @return the list of modules
+     */
     protected List<Object> getModules() {
         List<Object> result = new ArrayList<Object>();
         return result;
     }
 
-
-    @Module(library=true)
+    /**
+     * The dagger module associated with {@link InjectingService}.
+     */
+    @Module(library = true)
     public static class InjectingServiceModule {
-        private InjectingService mService;
+        private android.app.Service mService;
+        private Injector mInjector;
 
-        public InjectingServiceModule(InjectingService service) {
+        /**
+         * Class constructor.
+         *
+         * @param service the Service with which this module is associated.
+         */
+        public InjectingServiceModule(android.app.Service service, Injector injector) {
             mService = service;
+            mInjector = injector;
+        }
+
+        /**
+         * Provides the Application Context
+         *
+         * @return the Application Context
+         */
+        @Provides
+        @Singleton
+        @InjectingApplication.InjectingApplicationModule.Application
+        public Context provideApplicationContext() {
+            return mService.getApplicationContext();
         }
 
         @Provides
         @Singleton
-        public InjectingService provideInjectingService() {
+        public android.app.Service provideService() {
             return mService;
         }
+
+        @Provides
+        @Singleton
+        @Service
+        public Injector provideServiceInjector() {
+            return mInjector;
+        }
+
         @Qualifier
         @Target({FIELD, PARAMETER, METHOD})
         @Documented
