@@ -55,7 +55,11 @@
   </organization>
 
   <developers>
-    <developer>Andy Dennie</developer>
+    <developer>
+      <name>Andy Dennie</name>
+      <email>andy@fizz-buzz.com</email>
+      <url>www.andydennie.com</url>
+    </developer>
   </developers>
   
   <dependencies>
