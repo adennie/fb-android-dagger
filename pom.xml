@@ -10,7 +10,7 @@
 
   <groupId>com.fizz-buzz</groupId>
   <artifactId>fb-android-dagger</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>fb-android-dagger</name>
   <description>A helper library for using dagger on Android</description>
@@ -163,7 +163,13 @@
           </execution>
         </executions>
       </plugin>
-	  
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.4.1</version>
+      </plugin>
+
     </plugins>
   </build>
 </project>
