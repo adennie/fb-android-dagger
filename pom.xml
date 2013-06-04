@@ -11,7 +11,7 @@
     <version>7</version>
   </parent>
 
-  <groupId>com.fizzbuzz</groupId>
+  <groupId>com.fizz-buzz</groupId>
   <artifactId>fb-android-dagger</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
@@ -24,10 +24,10 @@
 
     <!-- dependency versions -->
     <android.version>4.2.2</android.version>
-    <android-support-v4.version>r13</android-support-v4.version>
+    <android-support-v4.version>r7</android-support-v4.version>
     <dagger.version>1.0.0</dagger.version>
     <slf4j-android.version>1.6.1-RC1</slf4j-android.version>
-    <guava.version>10.0.1</guava.version>
+    <guava.version>14.0.1</guava.version>
   </properties>
 
   <scm>
@@ -64,9 +64,7 @@
   
   <dependencies>
 
-    <!-- test scoped dependencies -->
-
-    <!-- 3rd party _packaged_ dependencies, alpha by groupId/artifactId -->
+     <!-- 3rd party _packaged_ dependencies, alpha by groupId/artifactId -->
 
     <dependency>
       <groupId>com.google.android</groupId>

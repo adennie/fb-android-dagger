@@ -23,14 +23,42 @@ import java.util.List;
 import static com.google.common.base.Preconditions.checkState;
 
 /**
- * Manages an ObjectGraph on behalf of an Activity.  This graph is created by extending the application-scope graph with
- * Activity-specific module(s).
+ * Manages an ObjectGraph on behalf of a FragmentActivity.  This graph is created by extending the application-scope
+ * graph with FragmentActivity-specific module(s).
  */
 public class InjectingFragmentActivity
         extends FragmentActivity
         implements Injector {
     private ObjectGraph mObjectGraph;
 
+    /**
+     * Gets this FragmentActivity's object graph.
+     *
+     * @return
+     */
+    @Override
+    public final ObjectGraph getObjectGraph() {
+        return mObjectGraph;
+    }
+
+    /**
+     * Injects a target object using this FragmentActivity's object graph.
+     *
+     * @param target the target object
+     */
+    @Override
+    public void inject(Object target) {
+        checkState(mObjectGraph != null, "object graph must be assigned prior to calling inject");
+        mObjectGraph.inject(target);
+    }
+    // implement Injector interface
+
+    /**
+     * Creates an object graph for this FragmentActivity by extending the application-scope object graph with the
+     * modules returned by {@link #getModules()}.
+     * <p/>
+     * Injects this FragmentActivity using the created graph.
+     */
     @Override
     protected void onCreate(android.os.Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,28 +71,25 @@ public class InjectingFragmentActivity
         // now we can inject ourselves
         inject(this);
     }
-    @Override protected void onDestroy() {
+
+    @Override
+    protected void onDestroy() {
         // Eagerly clear the reference to the activity graph to allow it to be garbage collected as
         // soon as possible.
         mObjectGraph = null;
 
         super.onDestroy();
     }
-    // implement Injector interface
 
-    @Override
-    public final ObjectGraph getObjectGraph() {
-        return mObjectGraph;
-    }
-    @Override
-    public void inject(Object target) {
-        checkState(mObjectGraph != null, "object graph must be assigned prior to calling inject");
-        mObjectGraph.inject(target);
-    }
-
+    /**
+     * Returns the list of dagger modules to be included in this FragmentActivity's object graph.  Subclasses that
+     * override this method should add to the list returned by super.getModules().
+     *
+     * @return the list of modules
+     */
     protected List<Object> getModules() {
         List<Object> result = new ArrayList<Object>();
-        result.add(new InjectingActivityModule(this));
+        result.add(new InjectingActivityModule(this, this));
         return result;
     }
 }

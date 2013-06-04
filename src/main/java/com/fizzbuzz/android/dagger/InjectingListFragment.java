@@ -15,7 +15,6 @@
 package com.fizzbuzz.android.dagger;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import dagger.ObjectGraph;
 
@@ -25,14 +24,20 @@ import java.util.List;
 import static com.google.common.base.Preconditions.checkState;
 
 /**
- * Manages an ObjectGraph on behalf of an ListFragment.  This graph is created by extending the activity-scope graph
- * with fragment-specific module(s).
+ * Manages an ObjectGraph on behalf of an ListFragment.  This graph is created by extending the hosting Activity's graph
+ * with Fragment-specific module(s).
  */
 public class InjectingListFragment
         extends ListFragment
         implements Injector {
     private ObjectGraph mObjectGraph;
 
+    /**
+     * Creates an object graph for this ListFragment by extending the hosting Activity's object graph with the modules
+     * returned by {@link #getModules()}.
+     * <p/>
+     * Injects this ListFragment using the created graph.
+     */
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
@@ -54,28 +59,36 @@ public class InjectingListFragment
 
         super.onDestroy();
     }
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-    }
-
-    // implement Injector interface
-
+    /**
+     * Gets this ListFragment's object graph.
+     *
+     * @return
+     */
     @Override
     public final ObjectGraph getObjectGraph() {
         return mObjectGraph;
     }
 
+    /**
+     * Injects a target object using this ListFragment's object graph.
+     * @param target the target object
+     */
     @Override
     public void inject(Object target) {
         checkState(mObjectGraph != null, "object graph must be assigned prior to calling inject");
         mObjectGraph.inject(target);
     }
 
+    /**
+     * Returns the list of dagger modules to be included in this ListFragment's object graph.  Subclasses that override
+     * this method should add to the list returned by super.getModules().
+     *
+     * @return the list of modules
+     */
     protected List<Object> getModules() {
         List<Object> result = new ArrayList<Object>();
-        result.add(new InjectingFragmentModule(this));
+        result.add(new InjectingFragmentModule(this, this));
         return result;
     }
 }
