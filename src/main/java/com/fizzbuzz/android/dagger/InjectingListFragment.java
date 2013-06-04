@@ -63,7 +63,7 @@ public class InjectingListFragment
     /**
      * Gets this ListFragment's object graph.
      *
-     * @return
+     * @return the object graph
      */
     @Override
     public final ObjectGraph getObjectGraph() {

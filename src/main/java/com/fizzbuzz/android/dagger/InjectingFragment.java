@@ -67,7 +67,7 @@ public class InjectingFragment
     /**
      * Gets this Fragment's object graph.
      *
-     * @return
+     * @return the object graph
      */
     @Override
     public final ObjectGraph getObjectGraph() {

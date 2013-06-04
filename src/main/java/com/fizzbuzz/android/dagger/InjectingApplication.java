@@ -66,7 +66,7 @@ public abstract class InjectingApplication
     /**
      * Gets this Application's object graph.
      *
-     * @return
+     * @return the object graph
      */
     @Override
     public ObjectGraph getObjectGraph() {

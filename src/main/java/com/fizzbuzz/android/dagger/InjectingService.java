@@ -65,7 +65,7 @@ public abstract class InjectingService
     /**
      * Gets this Service's object graph.
      *
-     * @return
+     * @return the object graph
      */
     @Override
     public ObjectGraph getObjectGraph() {

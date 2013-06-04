@@ -66,7 +66,7 @@ public class InjectingBroadcastReceiver
     /**
      * Gets this BroadcastReceiver's object graph.
      *
-     * @return
+     * @return the object graph
      */
     @Override
     public ObjectGraph getObjectGraph() {

@@ -34,7 +34,7 @@ public class InjectingPreferenceActivity
     /**
      * Gets this PreferenceActivity's object graph.
      *
-     * @return
+     * @return the object graph
      */
     @Override
     public final ObjectGraph getObjectGraph() {

@@ -34,7 +34,7 @@ public class InjectingFragmentActivity
     /**
      * Gets this FragmentActivity's object graph.
      *
-     * @return
+     * @return the object graph
      */
     @Override
     public final ObjectGraph getObjectGraph() {

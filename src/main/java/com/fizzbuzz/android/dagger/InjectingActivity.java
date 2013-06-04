@@ -34,7 +34,7 @@ public class InjectingActivity
     /**
      * Gets this Activity's object graph.
      *
-     * @return
+     * @return the object graph
      */
     @Override
     public final ObjectGraph getObjectGraph() {
