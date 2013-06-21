@@ -5,11 +5,12 @@ A set of helper classes for using [dagger][dagger_url] with Android components s
   [dagger_url]: https://github.com/square/dagger
   
 Maven users: 
-    <dependency>
-      <groupId>com.fizz-buzz</groupId>
-      <artifactId>fb-android-dagger</artifactId>
-      <version>1.0.1</version>
-    </dependency>
+
+       <dependency>
+         <groupId>com.fizz-buzz</groupId>
+         <artifactId>fb-android-dagger</artifactId>
+         <version>1.0.1</version>
+       </dependency>`
 
 Developed by
 ============
