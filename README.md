@@ -1,5 +1,4 @@
-fb-android-dagger
-=================
+##fb-android-dagger
 
 A set of helper classes for using [dagger][dagger_url] with Android components such as Applications, Activities, Fragments, BroadcastReceivers, and Services.
   [dagger_url]: https://github.com/square/dagger
@@ -12,12 +11,12 @@ Maven users:
          <version>1.0.1</version>
        </dependency>
 
-Developed by
-============
+####Developed by
+
 Andy Dennie - andy@fizz-buzz.com
 
-License
-=======
+####License
+
 Copyright 2013 Fizz Buzz LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
