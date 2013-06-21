@@ -10,7 +10,7 @@ Maven users:
          <groupId>com.fizz-buzz</groupId>
          <artifactId>fb-android-dagger</artifactId>
          <version>1.0.1</version>
-       </dependency>`
+       </dependency>
 
 Developed by
 ============
