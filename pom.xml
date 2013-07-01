@@ -21,7 +21,7 @@
 
     <!-- dependency versions -->
     <android.version>4.2.2</android.version>
-    <android-support-v4.version>r7</android-support-v4.version>
+    <android-support-v4.version>r13</android-support-v4.version>
     <dagger.version>1.0.0</dagger.version>
     <slf4j-android.version>1.6.1-RC1</slf4j-android.version>
     <guava.version>14.0.1</guava.version>
@@ -118,7 +118,8 @@
           <configuration>
             <source>1.6</source>
             <target>1.6</target>
-          </configuration>        <dependencies>
+          </configuration>
+        <dependencies>
           <dependency>
             <groupId>com.squareup.dagger</groupId>
             <artifactId>dagger-compiler</artifactId>
@@ -168,6 +169,9 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
         <version>2.4.1</version>
+        <configuration>
+          <tagNameFormat>@{project.version}</tagNameFormat> <!-- use "X.Y.Z" labels in git -->
+        </configuration>
       </plugin>
 
     </plugins>
