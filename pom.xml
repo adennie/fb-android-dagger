@@ -6,6 +6,7 @@
     <groupId>org.sonatype.oss</groupId>
     <artifactId>oss-parent</artifactId>
     <version>7</version>
+    <relativePath></relativePath>
   </parent>
 
   <groupId>com.fizz-buzz</groupId>
@@ -22,16 +23,15 @@
     <!-- dependency versions -->
     <android.version>4.2.2</android.version>
     <android-support-v4.version>r13</android-support-v4.version>
-    <dagger.version>1.0.0</dagger.version>
+    <dagger.version>1.2.1</dagger.version>
     <slf4j-android.version>1.6.1-RC1</slf4j-android.version>
-    <guava.version>14.0.1</guava.version>
+    <guava.version>15.0</guava.version>
   </properties>
 
   <scm>
     <url>http://github.com/fizz-buzz/fb-android-dagger/</url>
     <connection>scm:git:https://github.com/fizz-buzz/fb-android-dagger.git</connection>
     <developerConnection>scm:git:https://github.com/fizz-buzz/fb-android-dagger.git</developerConnection>
-    <tag>fb-android-dagger-1.0.0</tag>
   </scm>
 
   <issueManagement>
