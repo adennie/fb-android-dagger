@@ -9,7 +9,7 @@ Maven users:
 <dependency>
    <groupId>com.fizz-buzz</groupId>
    <artifactId>fb-android-dagger</artifactId>
-   <version>1.0.1</version>
+   <version>1.0.2</version>
 </dependency>
 ```
 
@@ -19,7 +19,7 @@ Andy Dennie - andy@fizz-buzz.com
 
 ####License
 
-Copyright 2013 Fizz Buzz LLC
+Copyright 2014 Fizz Buzz LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
