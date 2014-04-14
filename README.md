@@ -5,11 +5,13 @@ A set of helper classes for using [dagger][dagger_url] with Android components s
   
 Maven users: 
 
-       <dependency>
-         <groupId>com.fizz-buzz</groupId>
-         <artifactId>fb-android-dagger</artifactId>
-         <version>1.0.1</version>
-       </dependency>
+```xml
+<dependency>
+   <groupId>com.fizz-buzz</groupId>
+   <artifactId>fb-android-dagger</artifactId>
+   <version>1.0.1</version>
+</dependency>
+```
 
 ####Developed by
 
