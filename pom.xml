@@ -11,7 +11,7 @@
 
   <groupId>com.fizz-buzz</groupId>
   <artifactId>fb-android-dagger</artifactId>
-  <version>1.0.3-SNAPSHOT</version>
+  <version>1.0.3</version>
   <packaging>jar</packaging>
   <name>fb-android-dagger</name>
   <description>A helper library for using dagger on Android</description>
@@ -32,7 +32,7 @@
     <url>http://github.com/fizz-buzz/fb-android-dagger/</url>
     <connection>scm:git:https://github.com/fizz-buzz/fb-android-dagger.git</connection>
     <developerConnection>scm:git:https://github.com/fizz-buzz/fb-android-dagger.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>1.0.3</tag>
   </scm>
 
   <issueManagement>
