@@ -48,36 +48,44 @@ Each component type has an associated module:
 
 The last two are shared by the three injecting activity classes and the three injecting fragment classes, respectively.  These modules define provider methods which enable injection of objects relevant to their component type.  They all have a provider that returns the component itself in the form of an Injector interface:
 
-    public interface Injector {
-        public ObjectGraph getObjectGraph();
-        public void inject(Object target);
-    }
+```java
+public interface Injector {
+    public ObjectGraph getObjectGraph();
+    public void inject(Object target);
+}
+```
 
 Qualifier annotations defined in the various modules allow for specific components' injectors to be accessed:
 
-    class Foo1 {
-        @Inject @Application Injector appInjector;
-        @Inject @Activity Injector activityInjector;
-        @Inject @Fragment Injector fragInjector;
-        ...
-    }
+```java
+class Foo1 {
+    @Inject @Application Injector appInjector;
+    @Inject @Activity Injector activityInjector;
+    @Inject @Fragment Injector fragInjector;
+    //...
+}
+```
 
 Application and Activity Contexts are similarly accessible:
 
-    class Foo2 {
-        @Inject @Application Context appContext;
-        @Inject @Activity Context activityContext;
-        ...
-    }
+```java
+class Foo2 {
+    @Inject @Application Context appContext;
+    @Inject @Activity Context activityContext;
+    // ...
+}
+```
     
 ...as are the typed components themselves:
 
-    class Foo3 {
-        @Inject Application theApp;
-        @Inject Activity myActivity;
-        @Inject Fragment myFragment;
-        ...
-    }
+```java
+class Foo3 {
+    @Inject Application theApp;
+    @Inject Activity myActivity;
+    @Inject Fragment myFragment;
+    // ...
+}
+```
     
 
 
