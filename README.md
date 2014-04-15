@@ -31,20 +31,20 @@ The following classes are provided which implement this technique in the method 
 
 ####The graphs
 
-InjectingApplication creates an application-scope graph.  
+`InjectingApplication` creates an application-scope graph.  
 
-InjectingBroadcastReciever, InjectingService, and InjectingActivity/InjectingFragmentActivity/InjectingPreferencesActivity each extend the application-scope graph with their own module(s), resulting in a graph scoped to their own component.
+`InjectingBroadcastReciever`, `InjectingService`, and `InjectingActivity`/`InjectingFragmentActivity`/`InjectingPreferencesActivity` each extend the application-scope graph with their own module(s), resulting in a graph scoped to their own component.
 
-InjectingFragment/InjectingListFragment/InjectingDialogFragment extend their corresponding activity's graph.
+`InjectingFragment`/`InjectingListFragment``/InjectingDialogFragment` extend their corresponding activity's graph.
 
 ####Modules
 
 Each component type has an associated module:
- - InjectingActivityModule
- - InjectingServiceModule
- - InjectingBroadcastRecieverModule
- - InjectingActivityModule
- - InjectingFragmentModule
+ - `InjectingActivityModule`
+ - `InjectingServiceModule`
+ - `InjectingBroadcastRecieverModule`
+ - `InjectingActivityModule`
+ - `InjectingFragmentModule`
 
 The last two are shared by the three injecting activity classes and the three injecting fragment classes, respectively.  These modules define provider methods which enable injection of objects relevant to their component type.  They all have a provider that returns the component itself in the form of an Injector interface:
 
