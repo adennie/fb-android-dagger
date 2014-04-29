@@ -33,7 +33,7 @@ The following classes are provided, each implementing this technique in the meth
 
 `InjectingApplication` creates an application-scope graph.  
 
-`InjectingBroadcastReciever`, `InjectingService`, and `InjectingActivity`/`InjectingFragmentActivity`/`InjectingPreferencesActivity` each extend the application-scope graph with their own module(s), resulting in a graph scoped to their own component.
+`InjectingBroadcastReciever`, `InjectingService`, and `InjectingActivity`/`InjectingFragmentActivity`/`InjectingPreferenceActivity` each extend the application-scope graph with their own module(s), resulting in a graph scoped to their own component.
 
 `InjectingFragment`/`InjectingListFragment``/InjectingDialogFragment` extend their corresponding activity's graph.
 
