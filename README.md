@@ -17,7 +17,7 @@ Maven users:
 
 fb-android-dagger provides a set of base classes for using dagger in Android applications.  It follows a convention exemplified by Square's sample application, whereby a base class calls getModules() to gather the set of modules that its subclass(es) need to be part of the graph, then creates an object graph from those modules and injects itself.
 
-The following classes are provided which implement this technique in the method indicated:
+The following classes are provided, each implementing this technique in the method indicated in parentheses:
 
  - `InjectingApplication` (onCreate)
  - `InjectingBroadcastReceiver` (onReceive)
