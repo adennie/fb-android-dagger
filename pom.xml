@@ -21,8 +21,8 @@
     <android-target-sdk>17</android-target-sdk>
 
     <!-- dependency versions -->
-    <android.version>4.2.2</android.version>
-    <android-support-v4.version>r13</android-support-v4.version>
+    <android.version>4.1.1.4</android.version>
+    <android-support-v4.version>r7</android-support-v4.version>
     <dagger.version>1.2.1</dagger.version>
     <slf4j-android.version>1.6.1-RC1</slf4j-android.version>
     <guava.version>15.0</guava.version>
