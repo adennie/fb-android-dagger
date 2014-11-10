@@ -1,7 +1,7 @@
 ##fb-android-dagger
 
-A set of helper classes for using [dagger][dagger_url] with Android components such as Applications, Activities, Fragments, BroadcastReceivers, and Services.
-  [dagger_url]: https://github.com/square/dagger
+A set of helper classes for using [dagger](https://github.com/square/dagger) with Android components such as 
+Applications, Activities, Fragments, BroadcastReceivers, and Services.
   
 Maven users: 
 
@@ -9,9 +9,16 @@ Maven users:
 <dependency>
    <groupId>com.fizz-buzz</groupId>
    <artifactId>fb-android-dagger</artifactId>
-   <version>1.0.3</version>
+   <version>1.0.4</version>
 </dependency>
 ```
+
+Note: this project's POM specifies dependencies for the Android SDK and the support v4 library using the 
+group IDs, artifact IDs, and version numbers created by the [Maven Android SDK Deployer]
+(https://github.com/mosabua/maven-android-sdk-deployer), as opposed to the ones in Maven Central, which contains 
+artifacts that are unofficial and out of date.  If you want to use the ones in Maven Central anyway, just update 
+those dependencies in the POM.
+
 
 ####Overview
 
