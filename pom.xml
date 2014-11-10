@@ -21,11 +21,10 @@
     <android-target-sdk>17</android-target-sdk>
 
     <!-- dependency versions -->
-    <android.version>4.1.1.4</android.version>
-    <android-support-v4.version>r7</android-support-v4.version>
+    <android.version>5.0_r1</android.version>
+    <android-support-v4.version>21.0.1</android-support-v4.version>
     <dagger.version>1.2.1</dagger.version>
-    <slf4j-android.version>1.6.1-RC1</slf4j-android.version>
-    <guava.version>15.0</guava.version>
+    <slf4j-android.version>1.7.7</slf4j-android.version>
   </properties>
 
   <scm>
@@ -59,13 +58,13 @@
       <url>www.andydennie.com</url>
     </developer>
   </developers>
-  
+
   <dependencies>
 
-     <!-- 3rd party _packaged_ dependencies, alpha by groupId/artifactId -->
+     <!-- 3rd party compile dependencies, alpha by groupId/artifactId -->
     <dependency>
-      <groupId>com.google.android</groupId>
-      <artifactId>support-v4</artifactId>
+      <groupId>android.support</groupId>
+      <artifactId>compatibility-v4</artifactId>
       <version>${android-support-v4.version}</version>
     </dependency>
 
@@ -81,9 +80,9 @@
       <version>${slf4j-android.version}</version>
     </dependency>
 
-    <!-- 3rd party _provided_ dependencies, alpha by groupId/artifactId -->
+    <!-- 3rd party provided dependencies, alpha by groupId/artifactId -->
     <dependency>
-      <groupId>com.google.android</groupId>
+      <groupId>android</groupId>
       <artifactId>android</artifactId>
       <version>${android.version}</version>
       <scope>provided</scope>
@@ -94,13 +93,12 @@
         </exclusion>
       </exclusions>
     </dependency>
-    
-    <!-- _compile_ dependencies -->
+
     <dependency>
       <groupId>com.squareup.dagger</groupId>
       <artifactId>dagger-compiler</artifactId>
       <version>${dagger.version}</version>
-      <scope>compile</scope>
+      <scope>provided</scope>
     </dependency>
 
   </dependencies>
