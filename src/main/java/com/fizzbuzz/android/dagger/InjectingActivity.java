@@ -34,7 +34,7 @@ import dagger.ObjectGraph;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.google.common.base.Preconditions.checkState;
+import static com.fizzbuzz.android.dagger.Preconditions.checkState;
 
 /**
  * Manages an ObjectGraph on behalf of an Activity.  This graph is created by extending the application-scope graph with
