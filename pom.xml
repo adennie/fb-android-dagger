@@ -28,9 +28,9 @@
   </properties>
 
   <scm>
-    <url>http://github.com/fizz-buzz/fb-android-dagger/</url>
-    <connection>scm:git:https://github.com/fizz-buzz/fb-android-dagger.git</connection>
-    <developerConnection>scm:git:https://github.com/fizz-buzz/fb-android-dagger.git</developerConnection>
+    <url>http://github.com/adennie/fb-android-dagger/</url>
+    <connection>scm:git:https://adennie/fizz-buzz/fb-android-dagger.git</connection>
+    <developerConnection>scm:git:https://github.com/adennie/fb-android-dagger.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
 
