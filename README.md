@@ -9,7 +9,7 @@ Maven users:
 <dependency>
    <groupId>com.fizz-buzz</groupId>
    <artifactId>fb-android-dagger</artifactId>
-   <version>1.0.4</version>
+   <version>1.0.5</version>
 </dependency>
 ```
 
