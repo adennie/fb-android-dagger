@@ -42,7 +42,12 @@ public abstract class InjectingApplication
         extends Application
         implements Injector {
 
+    private List<Object> mSeedModules = new ArrayList<Object>();
     private ObjectGraph mObjectGraph;
+
+    public void addSeedModules(List<Object> modules) {
+        mSeedModules.addAll(modules);
+    }
 
     /**
      * Creates an object graph for this Application using the modules returned by {@link #getModules()}.
@@ -91,6 +96,7 @@ public abstract class InjectingApplication
      */
     protected List<Object> getModules() {
         List<Object> result = new ArrayList<Object>();
+        result.addAll(mSeedModules);
         result.add(new InjectingApplicationModule(this, this));
         return result;
     }
