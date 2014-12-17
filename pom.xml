@@ -22,7 +22,8 @@
 
     <!-- dependency versions -->
     <android.version>5.0_r1</android.version>
-    <android-support-v4.version>21.0.1</android-support-v4.version>
+    <android-support-compat-v4.version>21.0.1</android-support-compat-v4.version>
+    <android-support-compat-v7-appcompat.version>21.0.1</android-support-compat-v7-appcompat.version>
     <dagger.version>1.2.1</dagger.version>
     <slf4j-android.version>1.7.7</slf4j-android.version>
   </properties>
@@ -65,7 +66,13 @@
     <dependency>
       <groupId>android.support</groupId>
       <artifactId>compatibility-v4</artifactId>
-      <version>${android-support-v4.version}</version>
+      <version>${android-support-compat-v4.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>android.support</groupId>
+      <artifactId>compatibility-v7-appcompat</artifactId>
+      <version>${android-support-compat-v7-appcompat.version}</version>
     </dependency>
 
     <dependency>

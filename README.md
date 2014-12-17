@@ -9,7 +9,7 @@ Maven users:
 <dependency>
    <groupId>com.fizz-buzz</groupId>
    <artifactId>fb-android-dagger</artifactId>
-   <version>1.0.5</version>
+   <version>1.0.6</version>
 </dependency>
 ```
 
@@ -28,8 +28,10 @@ The following classes are provided, each implementing this technique in the meth
 
  - `InjectingApplication` (onCreate)
  - `InjectingBroadcastReceiver` (onReceive)
+ - `InjectingAppWidgetProvider` (onReceive)
  - `InjectingService` (onCreate)
  - `InjectingActivity` (onCreate)
+ - `InjectingActionBarActivity` (onCreate)
  - `InjectingFragmentActivity` (onCreate)
  - `InjectingPreferenceActivity` (onCreate)
  - `InjectingFragment` (onAttach)
@@ -40,9 +42,9 @@ The following classes are provided, each implementing this technique in the meth
 
 `InjectingApplication` creates an application-scope graph.  
 
-`InjectingBroadcastReciever`, `InjectingService`, and `InjectingActivity`/`InjectingFragmentActivity`/`InjectingPreferenceActivity` each extend the application-scope graph with their own module(s), resulting in a graph scoped to their own component.
+`InjectingBroadcastReciever`, `InjectingAppWidgetProvider, `InjectingService`, and the various `Injecting...Activity` classes each extend the application-scope graph with their own module(s), resulting in a graph scoped to their own component.
 
-`InjectingFragment`/`InjectingListFragment``/InjectingDialogFragment` extend their corresponding activity's graph.
+The various `Injecting...Fragment` classes extend their corresponding activity's graph.
 
 ####Modules
 
@@ -53,7 +55,7 @@ Each component type has an associated module:
  - `InjectingActivityModule`
  - `InjectingFragmentModule`
 
-The last two are shared by the three injecting activity classes and the three injecting fragment classes, respectively.  These modules define provider methods which enable injection of objects relevant to their component type.  They all have a provider that returns the component itself in the form of an Injector interface:
+The last two are shared by the `Injecting...Activity` classes and the `Injecting...Fragment` classes, respectively.  These modules define provider methods which enable injection of objects relevant to their component type.  They all have a provider that returns the component itself in the form of an Injector interface:
 
 ```java
 public interface Injector {

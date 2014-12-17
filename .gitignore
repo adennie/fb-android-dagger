@@ -1,5 +1,7 @@
+.idea/
 bin/
 gen/
 target/
 tmp/
 *.iml
+

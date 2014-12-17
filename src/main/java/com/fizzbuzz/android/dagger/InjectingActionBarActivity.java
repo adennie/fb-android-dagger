@@ -29,6 +29,7 @@
 package com.fizzbuzz.android.dagger;
 
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 import dagger.ObjectGraph;
 
 import java.util.ArrayList;
@@ -37,18 +38,18 @@ import java.util.List;
 import static com.fizzbuzz.android.dagger.Preconditions.checkState;
 
 /**
- * Manages an ObjectGraph on behalf of a FragmentActivity.  This graph is created by extending the application-scope
- * graph with FragmentActivity-specific module(s).
+ * Manages an ObjectGraph on behalf of a ActionBarActivity.  This graph is created by extending the application-scope
+ * graph with ActionBarActivity-specific module(s).
  */
-public class InjectingFragmentActivity
-        extends FragmentActivity
+public class InjectingActionBarActivity
+        extends ActionBarActivity
         implements Injector {
     private ObjectGraph mObjectGraph;
 
     // implement Injector interface
 
     /**
-     * Gets this FragmentActivity's object graph.
+     * Gets this ActionBarActivity's object graph.
      *
      * @return the object graph
      */
@@ -58,7 +59,7 @@ public class InjectingFragmentActivity
     }
 
     /**
-     * Injects a target object using this FragmentActivity's object graph.
+     * Injects a target object using this ActionBarActivity's object graph.
      *
      * @param target the target object
      */
@@ -69,10 +70,10 @@ public class InjectingFragmentActivity
     }
 
     /**
-     * Creates an object graph for this FragmentActivity by extending the application-scope object graph with the
+     * Creates an object graph for this ActionBarActivity by extending the application-scope object graph with the
      * modules returned by {@link #getModules()}.
      * <p/>
-     * Injects this FragmentActivity using the created graph.
+     * Injects this ActionBarActivity using the created graph.
      */
     @Override
     protected void onCreate(android.os.Bundle savedInstanceState) {
@@ -102,7 +103,7 @@ public class InjectingFragmentActivity
     }
 
     /**
-     * Returns the list of dagger modules to be included in this FragmentActivity's object graph.  Subclasses that
+     * Returns the list of dagger modules to be included in this ActionBarActivity's object graph.  Subclasses that
      * override this method should add to the list returned by super.getModules().
      *
      * @return the list of modules
