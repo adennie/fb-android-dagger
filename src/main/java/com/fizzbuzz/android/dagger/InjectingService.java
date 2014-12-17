@@ -42,7 +42,6 @@ public abstract class InjectingService
         extends Service
         implements Injector {
 
-    private Context mContext;
     private ObjectGraph mObjectGraph;
 
     /**
@@ -112,15 +111,15 @@ public abstract class InjectingService
         }
 
         /**
-         * Provides the Application Context
+         * Provides the Service Context
          *
-         * @return the Application Context
+         * @return the Service Context
          */
         @Provides
         @Singleton
-        @InjectingApplication.InjectingApplicationModule.Application
-        public Context provideApplicationContext() {
-            return mService.getApplicationContext();
+        @Service
+        public Context provideServiceContext() {
+            return mService;
         }
 
         @Provides
