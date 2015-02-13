@@ -42,7 +42,7 @@ The following classes are provided, each implementing this technique in the meth
 
 `InjectingApplication` creates an application-scope graph.  
 
-`InjectingBroadcastReciever`, `InjectingAppWidgetProvider, `InjectingService`, and the various `Injecting...Activity` classes each extend the application-scope graph with their own module(s), resulting in a graph scoped to their own component.
+`InjectingBroadcastReciever`, `InjectingAppWidgetProvider`, `InjectingService`, and the various `Injecting...Activity` classes each extend the application-scope graph with their own module(s), resulting in a graph scoped to their own component.
 
 The various `Injecting...Fragment` classes extend their corresponding activity's graph.
 
