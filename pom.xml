@@ -22,8 +22,8 @@
 
     <!-- dependency versions -->
     <android.version>5.0_r1</android.version>
-    <android-support-compat-v4.version>21.0.1</android-support-compat-v4.version>
-    <android-support-compat-v7-appcompat.version>21.0.1</android-support-compat-v7-appcompat.version>
+    <android-support-v4.version>22.0.0</android-support-v4.version>
+    <android-appcompat-v7.version>22.0.0</android-appcompat-v7.version>
     <dagger.version>1.2.1</dagger.version>
     <slf4j-android.version>1.7.7</slf4j-android.version>
   </properties>
@@ -66,13 +66,13 @@
     <dependency>
       <groupId>android.support</groupId>
       <artifactId>compatibility-v4</artifactId>
-      <version>${android-support-compat-v4.version}</version>
+      <version>${android-support-v4.version}</version>
     </dependency>
 
     <dependency>
       <groupId>android.support</groupId>
       <artifactId>compatibility-v7-appcompat</artifactId>
-      <version>${android-support-compat-v7-appcompat.version}</version>
+      <version>${android-appcompat-v7.version}</version>
     </dependency>
 
     <dependency>
@@ -129,9 +129,10 @@
       </plugin>
 
       <plugin>
-        <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+        <groupId>com.simpligility.maven.plugins</groupId>
         <artifactId>android-maven-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>4.1.1</version>
+        <extensions>true</extensions>
 
         <configuration>
           <sdk>
