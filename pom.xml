@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.sonatype.oss</groupId>
     <artifactId>oss-parent</artifactId>
     <version>7</version>
-    <relativePath />
+    <relativePath/>
   </parent>
 
   <groupId>com.fizz-buzz</groupId>
@@ -62,7 +63,8 @@
 
   <dependencies>
 
-     <!-- 3rd party compile dependencies, alpha by groupId/artifactId -->
+    <!-- 3rd party compile dependencies, alpha by groupId/artifactId -->
+
     <dependency>
       <groupId>android.support</groupId>
       <artifactId>compatibility-v4</artifactId>
@@ -74,6 +76,31 @@
       <artifactId>compatibility-v7-appcompat</artifactId>
       <version>${android-appcompat-v7.version}</version>
     </dependency>
+
+    <!-- these dependencies don't work, I can't figure out why
+
+    <dependency>
+      <groupId>com.android.support</groupId>
+      <artifactId>appcompat-v7</artifactId>
+      <version>${android-appcompat-v7.version}</version>
+      <type>aar</type>
+      <exclusions>
+        <exclusion>
+          <groupId>com.android.support</groupId>
+          <artifactId>support-v4</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>com.android.support</groupId>
+      <artifactId>support-v4</artifactId>
+      <version>${android-support-v4.version}</version>
+      <type>aar</type>
+    </dependency>
+
+    -->
+
 
     <dependency>
       <groupId>com.squareup.dagger</groupId>
@@ -115,10 +142,10 @@
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
-          <configuration>
-            <source>1.6</source>
-            <target>1.6</target>
-          </configuration>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
         <dependencies>
           <dependency>
             <groupId>com.squareup.dagger</groupId>
@@ -132,7 +159,6 @@
         <groupId>com.simpligility.maven.plugins</groupId>
         <artifactId>android-maven-plugin</artifactId>
         <version>4.1.1</version>
-        <extensions>true</extensions>
 
         <configuration>
           <sdk>
@@ -156,7 +182,7 @@
             <id>enforce</id>
             <configuration>
               <rules>
-                <DependencyConvergence />
+                <DependencyConvergence/>
               </rules>
             </configuration>
             <goals>
@@ -171,7 +197,8 @@
         <artifactId>maven-release-plugin</artifactId>
         <version>2.4.1</version>
         <configuration>
-          <tagNameFormat>@{project.version}</tagNameFormat> <!-- use "X.Y.Z" labels in git -->
+          <!-- use "X.Y.Z" labels in git -->
+          <tagNameFormat>@{project.version}</tagNameFormat>
         </configuration>
       </plugin>
 

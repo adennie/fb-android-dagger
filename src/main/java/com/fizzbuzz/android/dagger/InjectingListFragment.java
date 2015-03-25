@@ -64,7 +64,7 @@ public class InjectingListFragment
 
         // make sure it's the first time through; we don't want to re-inject a retained fragment that is going
         // through a detach/attach sequence.
-        if (mFirstAttach == true) {
+        if (mFirstAttach) {
             inject(this);
             mFirstAttach = false;
         }
@@ -72,12 +72,14 @@ public class InjectingListFragment
 
     @Override
     public void onDestroy() {
-        // Eagerly clear the reference to the fragment graph to allow it to be garbage collected as
+        // Eagerly clear the reference to the object graph to allow it to be garbage collected as
         // soon as possible.
         mObjectGraph = null;
 
         super.onDestroy();
     }
+
+    // implement Injector interface
 
     /**
      * Gets this ListFragment's object graph.

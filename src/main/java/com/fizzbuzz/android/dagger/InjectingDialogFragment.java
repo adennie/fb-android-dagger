@@ -12,34 +12,6 @@
  * limitations under the License.
  */
 
-/*
- * Copyright (c) 2013 Fizz Buzz LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-/*
- * Copyright (c) 2013 Fizz Buzz LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.fizzbuzz.android.dagger;
 
 import android.app.Activity;
@@ -52,7 +24,7 @@ import java.util.List;
 import static com.fizzbuzz.android.dagger.Preconditions.checkState;
 
 /**
- * Manages an ObjectGraph on behalf of an ListFragment.  This graph is created by extending the hosting Activity's graph
+ * Manages an ObjectGraph on behalf of a DialogFragment.  This graph is created by extending the hosting Activity's graph
  * with Fragment-specific module(s).
  */
 public class InjectingDialogFragment
@@ -62,11 +34,12 @@ public class InjectingDialogFragment
     private boolean mFirstAttach = true;
 
     /**
-     * Creates an object graph for this ListFragment by extending the hosting Activity's object graph with the modules
+     * Creates an object graph for this DialogFragment by extending the hosting Activity's object graph with the modules
      * returned by {@link #getModules()}.
      * <p/>
-     * Injects this ListFragment using the created graph.
+     * Injects this DialogFragment using the created graph.
      */
+    @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
@@ -82,16 +55,20 @@ public class InjectingDialogFragment
             mFirstAttach = false;
         }
     }
-    @Override public void onDestroy() {
-        // Eagerly clear the reference to the fragment graph to allow it to be garbage collected as
+
+    @Override
+    public void onDestroy() {
+        // Eagerly clear the reference to the object graph to allow it to be garbage collected as
         // soon as possible.
         mObjectGraph = null;
 
         super.onDestroy();
     }
 
+    // implement Injector interface
+
     /**
-     * Gets this ListFragment's object graph.
+     * Gets this DialogFragment's object graph.
      *
      * @return the object graph
      */
@@ -101,7 +78,8 @@ public class InjectingDialogFragment
     }
 
     /**
-     * Injects a target object using this ListFragment's object graph.
+     * Injects a target object using this DialogFragment's object graph.
+     *
      * @param target the target object
      */
     @Override
@@ -111,7 +89,7 @@ public class InjectingDialogFragment
     }
 
     /**
-     * Returns the list of dagger modules to be included in this ListFragment's object graph.  Subclasses that override
+     * Returns the list of dagger modules to be included in this DialogFragment's object graph.  Subclasses that override
      * this method should add to the list returned by super.getModules().
      *
      * @return the list of modules

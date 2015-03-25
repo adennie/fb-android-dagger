@@ -28,6 +28,7 @@
 
 package com.fizzbuzz.android.dagger;
 
+import android.app.Fragment;
 import dagger.Module;
 import dagger.Provides;
 
@@ -36,34 +37,56 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.ElementType.PARAMETER;
+import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
 /**
- * The dagger module associated with {@link InjectingFragment} and {@link InjectingListFragment}.
+ * The dagger module associated with {@link InjectingFragment}, {@link InjectingDialogFragment} and {@link
+ * InjectingListFragment}.
  */
-@Module(library=true)
+@Module(library = true)
 public class InjectingFragmentModule {
-    private android.support.v4.app.Fragment mFragment;
+    private android.support.v4.app.Fragment mSupportV4Fragment;
+    private android.app.Fragment mFragment;
     private Injector mInjector;
 
     /**
      * Class constructor.
      *
      * @param fragment the Fragment with which this module is associated.
-     */    public InjectingFragmentModule(android.support.v4.app.Fragment fragment, Injector injector) {
+     */
+    public InjectingFragmentModule(android.support.v4.app.Fragment fragment, Injector injector) {
+        mSupportV4Fragment = fragment;
+        mInjector = injector;
+    }
+
+    /**
+     * Class constructor.
+     *
+     * @param fragment the Fragment with which this module is associated.
+     */
+    public InjectingFragmentModule(android.app.Fragment fragment, Injector injector) {
         mFragment = fragment;
         mInjector = injector;
     }
 
     /**
-     * Provides the Fragment
+     * Provides a Support v4 Fragment
      *
      * @return the Fragment
      */
     @Provides
-    public android.support.v4.app.Fragment provideFragment() {
+    public android.support.v4.app.Fragment provideSupportV4Fragment() {
+        return mSupportV4Fragment;
+    }
+
+    /**
+     * Provides a Fragment
+     *
+     * @return the Fragment
+     */
+    @Provides
+    public android.app.Fragment provideFragment() {
         return mFragment;
     }
 
@@ -81,6 +104,7 @@ public class InjectingFragmentModule {
     /**
      * Defines an qualifier annotation which can be used in conjunction with a type to identify dependencies within
      * the object graph.
+     *
      * @see <a href="http://square.github.io/dagger/">the dagger documentation</a>
      */
     @Qualifier

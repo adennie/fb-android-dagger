@@ -1,21 +1,13 @@
 /*
- * Copyright (c) 2014 Fizz Buzz LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright (c) 2015 Fizz Buzz LLC
  */
 
 package com.fizzbuzz.android.dagger;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
-import android.support.v4.app.Fragment;
+import android.os.Build;
+import android.preference.PreferenceFragment;
 import dagger.ObjectGraph;
 
 import java.util.ArrayList;
@@ -24,20 +16,21 @@ import java.util.List;
 import static com.fizzbuzz.android.dagger.Preconditions.checkState;
 
 /**
- * Manages an ObjectGraph on behalf of a Fragment.  This graph is created by extending the hosting Activity's graph
- * with Fragment-specific module(s).
+ * Manages an ObjectGraph on behalf of a PreferenceFragment.  This graph is created by extending the hosting
+ * Activity's graph with Fragment-specific module(s).
  */
-public class InjectingFragment
-        extends Fragment
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+public class InjectingPreferenceFragment
+        extends PreferenceFragment
         implements Injector {
     private ObjectGraph mObjectGraph;
     private boolean mFirstAttach = true;
 
     /**
-     * Creates an object graph for this Fragment by extending the hosting Activity's object graph with the modules
-     * returned by {@link #getModules()}.
+     * Creates an object graph for this PreferenceFragment by extending the hosting Activity's object graph with the
+     * modules returned by {@link #getModules()}.
      * <p/>
-     * Injects this Fragment using the created graph.
+     * Injects this PreferenceFragment using the created graph.
      */
     @Override
     public void onAttach(Activity activity) {
@@ -50,7 +43,7 @@ public class InjectingFragment
 
         // make sure it's the first time through; we don't want to re-inject a retained fragment that is going
         // through a detach/attach sequence.
-        if (mFirstAttach) {
+        if (mFirstAttach == true) {
             inject(this);
             mFirstAttach = false;
         }
@@ -58,8 +51,7 @@ public class InjectingFragment
 
     @Override
     public void onDestroy() {
-        // Eagerly clear the reference to the object graph to allow it to be garbage collected as
-        // soon as possible.
+        // Eagerly clear the reference to the object graph to allow it to be garbage collected as soon as possible.
         mObjectGraph = null;
 
         super.onDestroy();
@@ -68,7 +60,7 @@ public class InjectingFragment
     // implement Injector interface
 
     /**
-     * Gets this Fragment's object graph.
+     * Gets this PreferenceFragment's object graph.
      *
      * @return the object graph
      */
@@ -78,7 +70,7 @@ public class InjectingFragment
     }
 
     /**
-     * Injects a target object using this Fragment's object graph.
+     * Injects a target object using this PreferenceFragment's object graph.
      *
      * @param target the target object
      */
@@ -89,8 +81,8 @@ public class InjectingFragment
     }
 
     /**
-     * Returns the list of dagger modules to be included in this Fragment's object graph.  Subclasses that override
-     * this method should add to the list returned by super.getModules().
+     * Returns the list of dagger modules to be included in this PreferenceFragment's object graph.  Subclasses that
+     * override this method should add to the list returned by super.getModules().
      *
      * @return the list of modules
      */
