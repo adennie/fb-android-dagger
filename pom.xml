@@ -13,20 +13,27 @@
   <groupId>com.fizz-buzz</groupId>
   <artifactId>fb-android-dagger</artifactId>
   <version>1.0.7-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>aar</packaging>
   <name>fb-android-dagger</name>
   <description>A helper library for using dagger on Android</description>
   <url>https://github.com/adennie/fb-android-dagger</url>
 
   <properties>
-    <android-target-sdk>17</android-target-sdk>
+    <android-target-sdk>22</android-target-sdk>
 
     <!-- dependency versions -->
-    <android.version>5.0_r1</android.version>
-    <android-support-v4.version>22.0.0</android-support-v4.version>
-    <android-appcompat-v7.version>22.0.0</android-appcompat-v7.version>
+    <android.version>5.1_r1</android.version>
+    <android-sdk-build-tools.version>22.0.0</android-sdk-build-tools.version>
     <dagger.version>1.2.1</dagger.version>
     <slf4j-android.version>1.7.7</slf4j-android.version>
+
+    <!-- plugin versions -->
+    <android-maven-plugin.version>4.1.1</android-maven-plugin.version>
+    <maven-compiler-plugin-version>3.2</maven-compiler-plugin-version>
+    <maven-enforcer-plugin.version>1.3.1</maven-enforcer-plugin.version>
+    <maven-release-plugin.version>2.5.1</maven-release-plugin.version>
+    <maven-surefire-plugin.version>2.18</maven-surefire-plugin.version>
+
   </properties>
 
   <scm>
@@ -64,43 +71,19 @@
   <dependencies>
 
     <!-- 3rd party compile dependencies, alpha by groupId/artifactId -->
-
     <dependency>
-      <groupId>android.support</groupId>
-      <artifactId>compatibility-v4</artifactId>
-      <version>${android-support-v4.version}</version>
+      <groupId>com.android.support</groupId>
+      <artifactId>support-v4</artifactId>
+      <version>${android-sdk-build-tools.version}</version>
+      <type>aar</type>
     </dependency>
-
-    <dependency>
-      <groupId>android.support</groupId>
-      <artifactId>compatibility-v7-appcompat</artifactId>
-      <version>${android-appcompat-v7.version}</version>
-    </dependency>
-
-    <!-- these dependencies don't work, I can't figure out why
 
     <dependency>
       <groupId>com.android.support</groupId>
       <artifactId>appcompat-v7</artifactId>
-      <version>${android-appcompat-v7.version}</version>
-      <type>aar</type>
-      <exclusions>
-        <exclusion>
-          <groupId>com.android.support</groupId>
-          <artifactId>support-v4</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-
-    <dependency>
-      <groupId>com.android.support</groupId>
-      <artifactId>support-v4</artifactId>
-      <version>${android-support-v4.version}</version>
+      <version>${android-sdk-build-tools.version}</version>
       <type>aar</type>
     </dependency>
-
-    -->
-
 
     <dependency>
       <groupId>com.squareup.dagger</groupId>
@@ -141,7 +124,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
+        <version>${maven-compiler-plugin-version}</version>
         <configuration>
           <source>1.6</source>
           <target>1.6</target>
@@ -158,9 +141,11 @@
       <plugin>
         <groupId>com.simpligility.maven.plugins</groupId>
         <artifactId>android-maven-plugin</artifactId>
-        <version>4.1.1</version>
+        <version>${android-maven-plugin.version}</version>
+        <extensions>true</extensions>
 
         <configuration>
+          <includeLibsJarsFromAar>true</includeLibsJarsFromAar>
           <sdk>
             <platform>${android-target-sdk}</platform>
           </sdk>
@@ -170,13 +155,13 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.14</version>
+        <version>${maven-surefire-plugin.version}</version>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>1.1.1</version>
+        <version>${maven-enforcer-plugin.version}</version>
         <executions>
           <execution>
             <id>enforce</id>
@@ -195,7 +180,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
-        <version>2.4.1</version>
+        <version>${maven-release-plugin.version}</version>
         <configuration>
           <!-- use "X.Y.Z" labels in git -->
           <tagNameFormat>@{project.version}</tagNameFormat>

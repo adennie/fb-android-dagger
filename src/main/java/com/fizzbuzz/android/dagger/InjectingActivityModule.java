@@ -31,7 +31,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * The dagger module associated with {@link InjectingActivity}, {@link InjectingFragmentActivity},
- * and {@link InjectingPreferenceActivity}.
+ * {@link InjectingActionBarActivity}, and {@link InjectingPreferenceActivity}.
  */
 @Module(library = true)
 public class InjectingActivityModule {
